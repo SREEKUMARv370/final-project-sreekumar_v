@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>View User Task</title>
+    <style>
+        
+      input[type=text] {
+        width: 130px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px; 
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        transition: width 0.4s ease-in-out;
+      }
+      
+      input[type=text]:focus {
+        width: 20%;
+      }
+            
+            input[type=submit] {
+              width: 15%;
+              background-color: #4CAF50;
+              color: white;
+              padding: 10px 20px;
+              margin: 10px 0px;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+            }
+            
+            input[type=submit]:hover {
+              background-color: #45a049;
+            }
+            
+            div {
+              border-radius: 5px;
+              background-color: #f2f2f2;
+              padding: 20px;
+            }
+     table {
+      
+      
+        border-collapse: collapse;
+  width: 30%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color: coral;}
+
+        </style>
+</head>
+
+<body>
+ 
+    <table align="center">
+    <h1 align="center">Task List </h1>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Task Detials</th>
+                <th>status</th>
+                <th>Due Date</th>
+                <th>Catagory</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in sqldata %}
+            <tr>
+                <td>{{i[0]}}</td>
+                <td>{{i[1]}}</td>
+                <td>{{i[2]}}</td>
+                <td>{{i[3]}}</td>
+                <td>{{i[4]}}</td>  
+                <td>{{i[5]}}</td> 
+                <td>  
+                    <a href="up" >Update</a> 
+                </td> 
+            </tr>   
+            {%endfor%}
+        </tbody>
+    </table>
+    <br><br>
+      
+    <h3 align="center">Enter id to delete Task</h3>
+    <form action="delete" method="post" align="center">
+      <label >Delete:</label>
+      <input type="text" name="task_id">
+      <br>
+      <br>
+      <input type="submit" value="Delete" >
+    </form> <br><br><br>
+  
+
+
+  <h3 align="center">Filter Tasks</h3>
+<div >
+  <form action="filter" method="post" align="center">
+  <label>catagory:</label>
+  <input type="text" name="catagory">
+  <br>
+  <br>
+  <input type="submit" value="filter">
+  <br>
+  {{msg}}
+  </form>
+  </div>
+</body>
+</html>
